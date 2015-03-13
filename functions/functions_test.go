@@ -6,6 +6,12 @@ import (
 	"github.com/stretchr/testify/assert"
 )
 
+func TestMyLogger(t *testing.T) {
+	dangerMsg := "danger, will robinson!"
+	assert.Contains(t, buildLogMessage(dangerMsg), "danger")
+	assert.Contains(t, buildLogMessage(dangerMsg), LoggerName)
+}
+
 func TestDouble(t *testing.T) {
 	assert.Equal(t, 10, Double(5))
 }

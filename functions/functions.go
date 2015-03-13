@@ -1,9 +1,15 @@
 package main
 
 import (
+	"bytes"
 	"fmt"
+	"log"
 	"strings"
 )
+
+var buf bytes.Buffer
+var LoggerName string = "MyLogger"
+var logger = log.New(&buf, LoggerName + ": ", log.Lshortfile)
 
 func main() {
 	fmt.Println(Double(5))
@@ -16,6 +22,13 @@ func main() {
 	}
 	greet(first)
 
+	line := buildLogMessage("Hello, log file!")
+	fmt.Print(line)
+}
+
+func buildLogMessage(msg string) (string) {
+	logger.Print(msg)
+	return buf.String()
 }
 
 func Double(n int) int {
